@@ -22,8 +22,8 @@ class App extends React.Component {
    componentDidMount() {
      fetch(URL)
      .then(res => res.json())
-     .then(res => {
-      this.setState({ contacts: res })
+     .then(contacts => {
+      this.setState({ contacts })
     })
   }
   
@@ -47,7 +47,6 @@ class App extends React.Component {
   render() {
     const { contacts } = this.state  
     return (
-      <React.Fragment> 
         <div data-testid="app" className="app">
       <Topbar />
       <Filters
@@ -60,7 +59,6 @@ class App extends React.Component {
      />        
       </div>
       
-      </React.Fragment>
     
     )
   }

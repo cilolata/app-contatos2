@@ -31,8 +31,8 @@ describe('Contacts APP', () => {
         expect(appContainer.children.length).toBe(3);
     });
 
-    fit('Should render Contact component', () => {
-        const { getByTestId, debug } = render(<Contact data={mockUserContact} />);
+    it('Should render Contact component', () => {
+        const { getByTestId } = render(<Contact data={mockUserContact} />);
         const container = getByTestId('contact');
         const name = getByTestId('contact-name');
         const phone = getByTestId('contact-phone');
@@ -47,7 +47,6 @@ describe('Contacts APP', () => {
         expect(phone).toHaveTextContent(mockUserContact.phone);
         expect(country).toHaveTextContent(mockUserContact.country);
         expect(date).toHaveTextContent('08/04/2019');
-        debug()
         expect(company).toHaveTextContent(mockUserContact.company);
     });
 
