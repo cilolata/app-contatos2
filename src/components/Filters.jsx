@@ -16,6 +16,7 @@ function Filters(props) {
   
 				<button 
 				className="filters__search__icon"
+				onClick={props.handleClickInput}
 				>
 				  <i className="fa fa-search"/>
 				</button>

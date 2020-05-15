@@ -5,7 +5,6 @@ import './App.scss';
 import Topbar from './components/Topbar';
 import Filters from './components/Filters';
 import Contacts from './components/Contacts';
-import Contact from './components/Contact';
 
 import { URL } from './services';
 
@@ -16,8 +15,8 @@ class App extends React.Component {
     super();
     this.state = {
       contacts: [],
-    };
-  }
+    }
+  };
   
    componentDidMount() {
      fetch(URL)
@@ -29,11 +28,18 @@ class App extends React.Component {
   
   handleChange = event =>{
     const { contacts } = this.state  
-    const findContact = contacts.filter(contact => contact.name.toLowerCase().includes(event.target.value))
-    this.setState({ 
-      contacts: findContact
-    }) 
-  };
+        const findContact = contacts.filter(contact => contact.name.includes(event.target.value))
+          this.setState({ 
+            contacts: findContact
+          })    
+  }
+
+  handleClickInput = (event) => {
+    const { contacts } = this.state  
+    this.setState({
+      contacts: contacts
+    })
+  }
 
   handleClick = (event) => {
     const { contacts } = this.state  
@@ -50,6 +56,7 @@ class App extends React.Component {
         <div data-testid="app" className="app">
       <Topbar />
       <Filters
+      handleClickInput={this.handleChange}
       handleChange ={this.handleChange}
       handleClick ={this.handleClick}
       />
@@ -57,9 +64,7 @@ class App extends React.Component {
      <Contacts
       contacts={contacts} 
      />        
-      </div>
-      
-    
+      </div>  
     )
   }
 }
