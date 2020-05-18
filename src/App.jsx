@@ -15,6 +15,7 @@ class App extends React.Component {
     super();
     this.state = {
       contacts: [],
+      view: [],
     }
   };
   
@@ -22,31 +23,58 @@ class App extends React.Component {
      fetch(URL)
      .then(res => res.json())
      .then(contacts => {
-      this.setState({ contacts })
+      this.setState({ 
+        contacts,
+        view: contacts
+      })
     })
   }
   
   handleChange = event =>{
-    const { contacts } = this.state  
-        const findContact = contacts.filter(contact => contact.name.includes(event.target.value))
-          this.setState({ 
-            contacts: findContact
-          })    
-  }
-
-  handleClickInput = (event) => {
-    const { contacts } = this.state  
-    this.setState({
-      contacts: contacts
-    })
+    const { view } = this.state  
+    const findContact = view.filter(contact => contact.name.toLowerCase().includes(event.target.value.toLowerCase()))
+    this.setState({ 
+      contacts: findContact
+    })    
   }
 
   handleClick = (event) => {
     const { contacts } = this.state  
     const contactOrdered = contacts.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
-
     this.setState({
       contacts: contactOrdered,
+    })
+  }
+
+  handleClickCountry = (event) => {
+    const { contacts } = this.state  
+    const contactOrderedCountry = contacts.sort((a, b) => a.country > b.country ? 1 : b.country > a.country ? -1 : 0);
+    this.setState({
+      contacts: contactOrderedCountry,
+    })
+  }
+
+  handleClickCompany = (event) => {
+    const { contacts } = this.state  
+    const contactOrderedCompany = contacts.sort((a, b) => a.company > b.company ? 1 : b.company > a.company ? -1 : 0);
+    this.setState({
+      contacts: contactOrderedCompany,
+    })
+  }
+
+  handleClickDepartment = (event) => {
+    const { contacts } = this.state  
+    const contactOrderedDepartment = contacts.sort((a, b) => a.department > b.department ? 1 : b.department > a.department ? -1 : 0);
+    this.setState({
+      contacts: contactOrderedDepartment,
+    })
+  }
+
+  handleClickDate = (event) => {
+    const { contacts } = this.state  
+    const contactOrderedDate = contacts.sort((a, b) => a.admissionDate > b.admissionDate ? 1 : b.admissionDate > a.admissionDate ? -1 : 0);;
+    this.setState({
+      contacts: contactOrderedDate,
     })
   }
  
@@ -59,6 +87,10 @@ class App extends React.Component {
       handleClickInput={this.handleChange}
       handleChange ={this.handleChange}
       handleClick ={this.handleClick}
+      handleClickCountry ={this.handleClickCountry}
+      handleClickCompany ={this.handleClickCompany}
+      handleClickDepartment ={this.handleClickDepartment}
+      handleClickDate ={this.handleClickDate}
       />
 
      <Contacts

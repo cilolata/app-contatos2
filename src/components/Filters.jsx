@@ -31,28 +31,28 @@ function Filters(props) {
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClick}
+			  onClick={props.handleClickCountry}
 			  >
 				País <i className="fas fa-sort-down"/> 
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClick}
+			  onClick={props.handleClickCompany}
 			  >
 				Empresa <i className="fas fa-sort-down" />
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClick}
+			  onClick={props.handleClickDepartment}
 			  >
 				Departamento
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClick} 
+			  onClick={props.handleClickDate} 
 			  >
 				Data de admissão <i className="fas fa-sort-down" />
 			  </button>
