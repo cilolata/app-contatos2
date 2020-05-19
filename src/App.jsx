@@ -25,7 +25,7 @@ class App extends React.Component {
      .then(contacts => {
       this.setState({ 
         contacts,
-        view: contacts
+        view: contacts,
       })
     })
   }
@@ -38,59 +38,30 @@ class App extends React.Component {
     })    
   }
 
-  handleClick = (event) => {
-    const { contacts } = this.state  
-    const contactOrdered = contacts.sort((a, b) => a.name > b.name ? 1 : b.name > a.name ? -1 : 0);
+  handleClick = (event, param) => {
+    const { contacts } = this.state
+    const contact = contacts.filter(c =>{
+      return c
+    })
+    const contactOrdered = contact.sort((a, b) => a[param] > b[param] ? 1 : b[param] > a[param] ? -1 : 0);
+
+    console.log(contactOrdered)
+    
     this.setState({
       contacts: contactOrdered,
     })
+
   }
 
-  handleClickCountry = (event) => {
-    const { contacts } = this.state  
-    const contactOrderedCountry = contacts.sort((a, b) => a.country > b.country ? 1 : b.country > a.country ? -1 : 0);
-    this.setState({
-      contacts: contactOrderedCountry,
-    })
-  }
-
-  handleClickCompany = (event) => {
-    const { contacts } = this.state  
-    const contactOrderedCompany = contacts.sort((a, b) => a.company > b.company ? 1 : b.company > a.company ? -1 : 0);
-    this.setState({
-      contacts: contactOrderedCompany,
-    })
-  }
-
-  handleClickDepartment = (event) => {
-    const { contacts } = this.state  
-    const contactOrderedDepartment = contacts.sort((a, b) => a.department > b.department ? 1 : b.department > a.department ? -1 : 0);
-    this.setState({
-      contacts: contactOrderedDepartment,
-    })
-  }
-
-  handleClickDate = (event) => {
-    const { contacts } = this.state  
-    const contactOrderedDate = contacts.sort((a, b) => a.admissionDate > b.admissionDate ? 1 : b.admissionDate > a.admissionDate ? -1 : 0);;
-    this.setState({
-      contacts: contactOrderedDate,
-    })
-  }
- 
   render() {
-    const { contacts } = this.state  
+    const { contacts, filter } = this.state  
+    console.log(filter)
     return (
         <div data-testid="app" className="app">
       <Topbar />
       <Filters
-      handleClickInput={this.handleChange}
       handleChange ={this.handleChange}
-      handleClick ={this.handleClick}
-      handleClickCountry ={this.handleClickCountry}
-      handleClickCompany ={this.handleClickCompany}
-      handleClickDepartment ={this.handleClickDepartment}
-      handleClickDate ={this.handleClickDate}
+      handleClick = {this.handleClick}
       />
 
      <Contacts

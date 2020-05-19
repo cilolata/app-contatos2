@@ -2,9 +2,9 @@ import React from 'react';
 
 import './Filters.scss';
 
-function Filters(props) {
-		return (
-			<div className="container" data-testid="filters">
+function Filters(props) {	
+	return (
+		<div className="container" data-testid="filters">
 			<section className="filters">
 			  <div className="filters__search">
 				<input 
@@ -16,49 +16,48 @@ function Filters(props) {
   
 				<button 
 				className="filters__search__icon"
-				onClick={props.handleClickInput}
 				>
 				  <i className="fa fa-search"/>
 				</button>
 			  </div>
   
 			  <button 
-			  className="filters__item is-selected"
-			  onClick={props.handleClick}
+			  className="filters__item is-selected name"
+			  onClick={(event) => props.handleClick(event, 'name')}
 			  >
 				Nome <i className="fas fa-sort-down" />
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClickCountry}
+			  onClick={(event) => props.handleClick(event, 'country')}
 			  >
 				País <i className="fas fa-sort-down"/> 
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClickCompany}
+			  onClick={(event) => props.handleClick(event, 'company')}
 			  >
 				Empresa <i className="fas fa-sort-down" />
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClickDepartment}
+			  onClick={(event) => props.handleClick(event, 'department')}
 			  >
 				Departamento
 			  </button>
   
 			  <button 
 			  className="filters__item"
-			  onClick={props.handleClickDate} 
+			  onClick={(event) => props.handleClick(event, 'admissionDate')}
 			  >
 				Data de admissão <i className="fas fa-sort-down" />
 			  </button>
 			</section>
 		  </div>
-		);
-	}
+	);
+}
 
 export default Filters;

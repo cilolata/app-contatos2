@@ -24,6 +24,7 @@ class Contacts extends React.Component {
 						data={contact} 
 						key={contact.id}
 						/>
+				
 					))}
 				</section>
 			</div>	
